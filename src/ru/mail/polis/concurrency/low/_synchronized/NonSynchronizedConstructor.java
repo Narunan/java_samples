@@ -16,7 +16,7 @@ public class NonSynchronizedConstructor {
 
     class Clazz {
 
-        String usefulData;
+        final String usefulData;
 
         public Clazz() {
             instances.add(this);
@@ -26,7 +26,7 @@ public class NonSynchronizedConstructor {
 
         private void doSomeLongImportantWorkForInitialization() {
             try {
-                Thread.sleep(TimeUnit.MINUTES.toMillis(1));
+                TimeUnit.MINUTES.sleep(1);
             } catch (InterruptedException e) {
                 System.out.println(Thread.currentThread().getName() + " thread is interrupted");
             }
@@ -50,7 +50,7 @@ public class NonSynchronizedConstructor {
 
         while (instances.isEmpty()) {
             try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+                TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 System.out.println("main thread is interrupted");
             }
