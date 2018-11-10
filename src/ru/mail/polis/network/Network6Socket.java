@@ -176,7 +176,7 @@ public class Network6Socket {
 
 
     public static void main(String args[]) throws Exception {
-        //Если на клиенте и сервере будет разные кодировки, то они друг друга не поймут
+        //Если на клиенте и сервере будут разные кодировки, то они друг друга не поймут
         System.out.println("Default charset: " + Charset.defaultCharset());
         new Network6Socket().run();
     }
