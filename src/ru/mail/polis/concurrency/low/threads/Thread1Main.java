@@ -6,7 +6,7 @@ import ru.mail.polis.concurrency.low.job.Jobs;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class Thread1Main {
+class Thread1Main {
 
     public static void main(String[] args) {
         Thread mainThread = Thread.currentThread();

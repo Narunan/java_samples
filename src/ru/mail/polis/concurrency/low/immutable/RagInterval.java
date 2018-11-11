@@ -6,29 +6,30 @@ import java.util.concurrent.TimeUnit;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class RagInterval {
+@SuppressWarnings("SameParameterValue")
+class RagInterval {
 
     private String name;
     private int left;
     private int right;
 
-    public RagInterval(String name, int left, int right) {
+    private RagInterval(String name, int left, int right) {
         this.name = name;
         this.left = left;
         this.right = right;
     }
 
-    public synchronized void update(String name, int left, int right) {
+    private synchronized void update(String name, int left, int right) {
         this.name = name;
         this.left = left;
         this.right = right;
     }
 
-    public synchronized String getName() {
+    private synchronized String getName() {
         return name;
     }
 
-    public synchronized boolean inside(int coordinate) {
+    private synchronized boolean inside(int coordinate) {
         return left <= coordinate && coordinate <= right;
     }
 

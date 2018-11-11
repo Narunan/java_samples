@@ -9,22 +9,24 @@ import java.util.stream.Stream;
  * Created by Nechaev Mikhail
  * Since 17/04/2017.
  */
-public class Stream6 {
+class Stream6 {
 
     static class Student {
-        private String name;
-        private int grade;
+        private final String name;
+        private final int grade;
         private Student(String name, int grade) {
             this.name = name;
             this.grade = grade;
         }
-        public static Student of(String name, int grade) {
+        static Student of(String name, int grade) {
             return new Student(name, grade);
         }
+
+        @SuppressWarnings("unused")
         public String getName() {
             return name;
         }
-        public int getGrade() {
+        int getGrade() {
             return grade;
         }
 

@@ -7,7 +7,8 @@ import java.util.List;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class MethodReference {
+@SuppressWarnings("unused")
+class MethodReference {
 
     class ComparatorByTimestamp implements Comparator<Message> {
         @Override
@@ -16,6 +17,7 @@ public class MethodReference {
         }
     }
 
+    @SuppressWarnings({"Convert2Diamond", "Convert2Lambda", "Anonymous2MethodRef", "Convert2MethodRef"})
     private void run(List<Message> list) {
         list.sort(new ComparatorByTimestamp());
         list.sort(new Comparator<Message>() {

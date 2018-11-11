@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class PassiveQueueTest {
+class PassiveQueueTest {
 
     public static void main(String[] args) {
         QueuePassive queue = new QueuePassive();
@@ -39,7 +39,7 @@ public class PassiveQueueTest {
                 String threadName = Thread.currentThread().getName();
                 System.out.println("Getter " + threadName);
                 try {
-                    while (true) {
+                    while (!Thread.currentThread().isInterrupted()) {
                         String data = threadName + " -- " + queue.getData();
                         System.out.println(data);
                         count.incrementAndGet();

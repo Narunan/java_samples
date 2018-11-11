@@ -9,12 +9,12 @@ import java.util.function.Predicate;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda7 {
+class Lambda7 {
 
-    void processMessages(List<Message> list,
-                         Predicate<Message> predicate,
-                         Function<Message, String> mapper,
-                         Consumer<String> consumer) {
+    private void processMessages(List<Message> list,
+                                 Predicate<Message> predicate,
+                                 Function<Message, String> mapper,
+                                 Consumer<String> consumer) {
         for (Message message : list) {
             //java.util.function.Predicate<T> — boolean test(T t)
             if (predicate.test(message)) {
@@ -26,6 +26,7 @@ public class Lambda7 {
         }
     }
 
+    @SuppressWarnings("Convert2MethodRef")
     private void run(List<Message> list) {
         processMessages(list,
                 message -> 123L == message.getChatId(),

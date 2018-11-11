@@ -8,9 +8,9 @@ import java.util.Arrays;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network7NetworkInterface {
+class Network7NetworkInterface {
 
-    public static void main(String args[]) throws SocketException {
+    public static void main(String[] args) throws SocketException {
         NetworkInterface.getNetworkInterfaces().asIterator().forEachRemaining((networkInterface -> {
             System.out.println("Display name: " + networkInterface.getDisplayName());
             System.out.println("Name: " + networkInterface.getName());

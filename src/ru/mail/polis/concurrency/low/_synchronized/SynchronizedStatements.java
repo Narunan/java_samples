@@ -3,8 +3,11 @@ package ru.mail.polis.concurrency.low._synchronized;
 /**
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
+ *
+ * Аналогично SynchronizedCounter
  */
-public class SynchronizedStatements {
+@SuppressWarnings("unused")
+class SynchronizedStatements {
 
     private int c = 0;
 

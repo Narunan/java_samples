@@ -7,7 +7,8 @@ import java.util.List;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda1 {
+@SuppressWarnings("unused")
+class Lambda1 {
 
     void printMessagesAfterTime(List<Message> list, Timestamp from) {
         for (Message message : list) {

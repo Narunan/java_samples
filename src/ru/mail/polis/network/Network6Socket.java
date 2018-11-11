@@ -21,9 +21,9 @@ import java.util.concurrent.Executors;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network6Socket {
+class Network6Socket {
 
-    private final static int PORT = 1234;
+    private static final int PORT = 1234;
 
     private void log(String message) {
         System.out.println(Thread.currentThread().getName() + "% " + message);
@@ -31,9 +31,9 @@ public class Network6Socket {
 
     class Client implements Runnable {
 
-        private long sleepTimeout;
+        private final long sleepTimeout;
 
-        public Client(long sleepTimeout) {
+        Client(long sleepTimeout) {
             this.sleepTimeout = sleepTimeout;
         }
 
@@ -77,13 +77,14 @@ public class Network6Socket {
 
     class Server implements Runnable {
 
-        private DateTimeFormatter formatter = DateTimeFormatter
+        private final DateTimeFormatter formatter = DateTimeFormatter
                         .ofLocalizedTime(FormatStyle.MEDIUM)
                         .withZone(ZoneId.systemDefault());
-        private ServerSocket serverSocket;
-        private int nThreads;
+        private final ServerSocket serverSocket;
+        private final int nThreads;
 
-        public Server(ServerSocket serverSocket, int nThreads) {
+        @SuppressWarnings("SameParameterValue")
+        Server(ServerSocket serverSocket, int nThreads) {
             this.serverSocket = serverSocket;
             this.nThreads = nThreads;
         }
@@ -104,9 +105,9 @@ public class Network6Socket {
 
         class Task implements Runnable {
 
-            private Socket socket;
+            private final Socket socket;
 
-            public Task(Socket socket) {
+            Task(Socket socket) {
                 this.socket = socket;
             }
 
@@ -175,7 +176,7 @@ public class Network6Socket {
 
 
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         //Если на клиенте и сервере будут разные кодировки, то они друг друга не поймут
         System.out.println("Default charset: " + Charset.defaultCharset());
         new Network6Socket().run();

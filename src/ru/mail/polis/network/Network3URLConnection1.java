@@ -16,9 +16,9 @@ import java.util.Map;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network3URLConnection1 {
+class Network3URLConnection1 {
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         URL url = new URL("https://bash.im");
         URLConnection urlConnection = url.openConnection();
         urlConnection.setRequestProperty(

@@ -4,12 +4,13 @@ package ru.mail.polis.lambda.messaging;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
+@SuppressWarnings("unused")
 public class User {
-    private int id;
-    private String name;
-    private String city;
-    private int age;
-    private Sex sex;
+    private final int id;
+    private final String name;
+    private final String city;
+    private final int age;
+    private final Sex sex;
 
     public User(int id, String name, String city, int age, Sex sex) {
         this.id = id;

@@ -4,11 +4,11 @@ package ru.mail.polis.concurrency.low._synchronized;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class Deadlock {
+class Deadlock {
 
     class Contact {
 
-        private String name;
+        private final String name;
 
         Contact(String name) {
             this.name = name;
@@ -25,11 +25,11 @@ public class Deadlock {
                 return;
             }
             System.out.println(this.name + " touch " + contact.getName());
-            contact.untouch(this);
+            contact.unTouch(this);
         }
 
-        synchronized void untouch(Contact contact) {
-            System.out.println(this.name + " untouch " + contact.getName());
+        synchronized void unTouch(Contact contact) {
+            System.out.println(this.name + " unTouch " + contact.getName());
         }
     }
 
@@ -74,30 +74,36 @@ Full thread dump OpenJDK 64-Bit Server VM (11+28 mixed mode):
 Found one Java-level deadlock:
 =============================
 "Thread-0":
-  waiting to lock monitor 0x00007fb99503f900 (object 0x000000070fee9d10, a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact),
+  waiting to lock monitor 0x00007fb99503f900 (
+        object 0x000000070fee9d10,
+        a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact
+    ),
   which is held by "Thread-1"
 "Thread-1":
-  waiting to lock monitor 0x00007fb99503fa00 (object 0x000000070fee9cc8, a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact),
+  waiting to lock monitor 0x00007fb99503fa00 (
+        object 0x000000070fee9cc8,
+        a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact
+    ),
   which is held by "Thread-0"
 
 Java stack information for the threads listed above:
 ===================================================
 "Thread-0":
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.untouch(Deadlock.java:32)
-	- waiting to lock <0x000000070fee9d10> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.touch(Deadlock.java:28)
-	- locked <0x000000070fee9cc8> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock.lambda$run$0(Deadlock.java:39)
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock$$Lambda$14/0x0000000800066840.run(Unknown Source)
-	at java.lang.Thread.run(java.base@11/Thread.java:834)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.unTouch(Deadlock.java:32)
+    - waiting to lock <0x000000070fee9d10> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.touch(Deadlock.java:28)
+    - locked <0x000000070fee9cc8> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock.lambda$run$0(Deadlock.java:39)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock$$Lambda$14/0x0000000800066840.run(Unknown Source)
+    at java.lang.Thread.run(java.base@11/Thread.java:834)
 "Thread-1":
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.untouch(Deadlock.java:32)
-	- waiting to lock <0x000000070fee9cc8> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.touch(Deadlock.java:28)
-	- locked <0x000000070fee9d10> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock.lambda$run$1(Deadlock.java:40)
-	at ru.mail.polis.concurrency.low._synchronized.Deadlock$$Lambda$15/0x0000000800066c40.run(Unknown Source)
-	at java.lang.Thread.run(java.base@11/Thread.java:834)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.unTouch(Deadlock.java:32)
+    - waiting to lock <0x000000070fee9cc8> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact.touch(Deadlock.java:28)
+    - locked <0x000000070fee9d10> (a ru.mail.polis.concurrency.low._synchronized.Deadlock$Contact)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock.lambda$run$1(Deadlock.java:40)
+    at ru.mail.polis.concurrency.low._synchronized.Deadlock$$Lambda$15/0x0000000800066c40.run(Unknown Source)
+    at java.lang.Thread.run(java.base@11/Thread.java:834)
 
 Found 1 deadlock.
  */

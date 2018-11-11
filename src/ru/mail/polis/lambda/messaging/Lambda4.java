@@ -6,10 +6,10 @@ import java.util.List;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda4 {
+class Lambda4 {
 
-    void printMessages(List<Message> list,
-                       CheckCondition checkCondition) {
+    private void printMessages(List<Message> list,
+                               CheckCondition checkCondition) {
         for (Message message : list) {
             if (checkCondition.check(message)) {
                 System.out.println(message);

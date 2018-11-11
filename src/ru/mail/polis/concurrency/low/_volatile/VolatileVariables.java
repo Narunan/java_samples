@@ -9,7 +9,8 @@ package ru.mail.polis.concurrency.low._volatile;
  *
  * https://docs.oracle.com/javase/tutorial/essential/concurrency/atomic.html
  */
-public class VolatileVariables {
+@SuppressWarnings("unused")
+class VolatileVariables {
     private volatile long x;
     private volatile double y;
 }

@@ -6,9 +6,9 @@ import java.util.List;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda3 {
+class Lambda3 {
 
-    void printMessages(List<Message> list, CheckCondition checkCondition) {
+    private void printMessages(List<Message> list, CheckCondition checkCondition) {
         for (Message message : list) {
             if (checkCondition.check(message)) {
                 System.out.println(message);
@@ -16,6 +16,7 @@ public class Lambda3 {
         }
     }
 
+    @SuppressWarnings("Convert2Lambda")
     private void run(List<Message> list) {
         printMessages(list, new CheckCondition() {
             @Override

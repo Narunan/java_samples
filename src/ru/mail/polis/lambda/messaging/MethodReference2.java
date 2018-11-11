@@ -9,13 +9,14 @@ import java.util.TreeSet;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class MethodReference2 {
+@SuppressWarnings("unused")
+class MethodReference2 {
 
     class Range {
-        private Timestamp from;
-        private Timestamp to;
+        private final Timestamp from;
+        private final Timestamp to;
 
-        public Range(Timestamp from, Timestamp to) {
+        Range(Timestamp from, Timestamp to) {
             this.from = from;
             this.to = to;
         }
@@ -26,13 +27,10 @@ public class MethodReference2 {
         }
     }
 
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private void run(List<Message> list) {
         Range range = new Range(new Timestamp(123L), new Timestamp(987L));
         Set<User> set = new TreeSet<>();
-        list.stream()
-                .filter(range::inRange)
-                .map(Message::getUser)
-                .forEach(set::add);
         list.stream()
                 .filter(range::inRange)
                 .map(Message::getUser)

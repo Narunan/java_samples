@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
  *  поэтому в многопоточной среде не стоит выкладывать в
  *  публичный доступ не до конца проинициализированные объекты
  */
-public class NonSynchronizedConstructor {
+class NonSynchronizedConstructor {
 
     class Clazz {
 
         final String usefulData;
 
-        public Clazz() {
+        Clazz() {
             instances.add(this);
             doSomeLongImportantWorkForInitialization();
             usefulData = "42";
@@ -41,7 +41,7 @@ public class NonSynchronizedConstructor {
         }
     }
 
-    private List<Clazz> instances = new ArrayList<>();
+    private final List<Clazz> instances = new ArrayList<>();
 
     private void run() {
         Thread childTread = new Thread(Clazz::new);

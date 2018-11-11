@@ -8,7 +8,7 @@ import java.util.Arrays;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class Thread6Daemon {
+class Thread6Daemon {
 
     private void run() {
         System.out.println("Hello!");
@@ -26,7 +26,7 @@ public class Thread6Daemon {
     private Thread createGood(int id) {
         Thread thread = new Thread(
                 () -> Jobs.doSimpleJob(10),
-                "UnluckBoy" + id
+                "UnLuckBoy" + id
         );
         thread.setDaemon(true);
         return thread;

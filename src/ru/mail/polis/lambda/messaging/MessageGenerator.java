@@ -14,18 +14,18 @@ import java.util.stream.Stream;
  */
 public class MessageGenerator {
 
-    private static Random random = new Random();
+    private static final Random RANDOM = new Random();
 
-    private final static String[] CITIES = new String[]{"Moscow", "Saint-Petersburg"};
-    private final static long[] CHAT_IDX = new long[]{123456L, 10L, 123L};
+    private static final String[] CITIES = new String[]{"Moscow", "Saint-Petersburg"};
+    private static final long[] CHAT_IDX = new long[]{123456L, 10L, 123L};
     private static int messageId = 0;
     private static int userId = 0;
 
     static class TimestampConsumer implements Consumer<Timestamp> {
 
-        List<Message> list;
+        final List<Message> list;
 
-        public TimestampConsumer() {
+        TimestampConsumer() {
             list = new ArrayList<>();
         }
 
@@ -33,24 +33,24 @@ public class MessageGenerator {
         public void accept(Timestamp timestamp) {
             list.add(new Message(
                 ++messageId,
-                CHAT_IDX[random.nextInt(CHAT_IDX.length)],
+                CHAT_IDX[RANDOM.nextInt(CHAT_IDX.length)],
                 new User(
                         ++userId,
                         UUID.randomUUID().toString(),
-                        CITIES[random.nextInt(CITIES.length)],
-                        random.nextInt(100),
-                        random.nextBoolean() ? Sex.MALE : Sex.FEMALE
+                        CITIES[RANDOM.nextInt(CITIES.length)],
+                        RANDOM.nextInt(100),
+                        RANDOM.nextBoolean() ? Sex.MALE : Sex.FEMALE
                 ),
                 timestamp,
                 UUID.randomUUID().toString()
             ));
         }
 
-        public void combine(TimestampConsumer other) {
+        void combine(TimestampConsumer other) {
             list.addAll(other.list);
         }
 
-        public List<Message> get() {
+        List<Message> get() {
             return list;
         }
     }

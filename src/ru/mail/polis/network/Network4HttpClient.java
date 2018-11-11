@@ -11,9 +11,9 @@ import java.nio.file.Paths;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network4HttpClient {
+class Network4HttpClient {
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder(
@@ -33,8 +33,8 @@ public class Network4HttpClient {
         System.out.println("Method: " + httpRequest.method());
         System.out.println("Status:  " + response.statusCode());
         System.out.println("Headers:");
-        response.headers().map().forEach((key, value) -> {
-            System.out.println(key + " " + value);
-        });
+        response.headers().map().forEach(
+                (key, value) -> System.out.println(key + " " + value)
+        );
     }
 }

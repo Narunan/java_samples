@@ -6,14 +6,15 @@ import java.util.stream.Stream;
  * Created by Nechaev Mikhail
  * Since 17/04/2017.
  */
-public class Stream2 {
+class Stream2 {
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         Stream empty = Stream.empty();
-        Stream numbers = Stream.of(1, 2, 3, 4);
-        Stream strings = Stream.of("A", "B", "C", "D");
+        Stream<Integer> numbers = Stream.of(1, 2, 3, 4);
+        Stream<String> strings = Stream.of("A", "B", "C", "D");
         //1234ABCD
-        Stream.concat(numbers, strings).forEach(System.out::print);
+        Stream.<Object>concat(numbers, strings).forEach(System.out::print);
         System.out.println();
         Stream builder = Stream.builder()
                 .add(1).add(2).add(3)
@@ -27,7 +28,7 @@ public class Stream2 {
                 .mapToLong(a -> a)
                 .sum();
         System.out.println(sum);
-        //AAAAAA AAAAAA AAAAAAAA
+        //AAAAAA\nAAAAAAA\nAAAAAAAA
         Stream.iterate("A", (seed) -> seed + "A")
                 .skip(5).limit(3)
                 .forEach(System.out::println);

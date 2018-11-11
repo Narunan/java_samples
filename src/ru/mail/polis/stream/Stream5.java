@@ -8,7 +8,7 @@ import java.util.stream.Stream;
  * Created by Nechaev Mikhail
  * Since 17/04/2017.
  */
-public class Stream5 {
+class Stream5 {
 
     public static void main(String[] args) {
         Map<String, String> map = Stream

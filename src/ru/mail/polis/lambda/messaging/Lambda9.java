@@ -9,10 +9,10 @@ import java.util.function.Predicate;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda9 {
+class Lambda9 {
 
-    <T, R> void process(Iterable<T> elements, Predicate<T> predicate,
-                        Function<T, R> mapper, Consumer<R> consumer) {
+    private <T, R> void process(Iterable<T> elements, Predicate<T> predicate,
+                                Function<T, R> mapper, Consumer<R> consumer) {
         //java.lang.Iterable<T> — Iterator<T> iterator()
         for (T element : elements) {
             //java.util.function.Predicate<T> — boolean test(T t)
@@ -25,6 +25,7 @@ public class Lambda9 {
         }
     }
 
+    @SuppressWarnings("Convert2MethodRef")
     private void run(List<Message> list) {
         process(list,
                 message -> 123L == message.getChatId(),

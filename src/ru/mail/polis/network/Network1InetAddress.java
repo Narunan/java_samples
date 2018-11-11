@@ -9,9 +9,9 @@ import java.net.UnknownHostException;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network1InetAddress {
+class Network1InetAddress {
 
-    public static void main(String args[]) throws UnknownHostException {
+    public static void main(String[] args) throws UnknownHostException {
         InetAddress inetAddress;
 
         inetAddress = InetAddress.getLocalHost();
@@ -27,13 +27,16 @@ public class Network1InetAddress {
             System.err.println(expected.getMessage());
         }
 
-        InetAddress inetAddresses[] = InetAddress.getAllByName("www.google.com");
+        InetAddress[] inetAddresses = InetAddress.getAllByName("www.google.com");
         System.out.println("Google--");
         for (InetAddress ia : inetAddresses) {
             System.out.println(ia + " : " + ia.getCanonicalHostName());
             byte[] ip = ia.getAddress();
-            InetAddress ipia = InetAddress.getByAddress(ip);
-            System.out.println(ipia  + " : " + ipia.getCanonicalHostName() + ". ipv6 = " + (ipia instanceof Inet6Address));
+            InetAddress inetAddressByIP = InetAddress.getByAddress(ip);
+            System.out.println(
+                    inetAddressByIP + " : " + inetAddressByIP.getCanonicalHostName() + ". "
+                            + "ipv6 = " + (inetAddressByIP instanceof Inet6Address)
+            );
         }
         System.out.println("--Google");
     }

@@ -4,14 +4,14 @@ package ru.mail.polis.anonymous;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class AnonymousClass5 {
-    interface I {}
+class AnonymousClass5 {
+    private interface I {}
     private void run() {
         new I() {
             { //instance initializer
                 System.out.println("init" + this.x); //0
             }
-            int x = 5;
+            final int x = 5;
             void method() {
                 System.out.println("method");
                 new C().run();

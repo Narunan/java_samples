@@ -7,11 +7,11 @@ import java.sql.Timestamp;
  * Since 16/04/2017.
  */
 public class Message {
-    private long id;
-    private long chatId;
-    private User user;
-    private Timestamp timestamp;
-    private String data;
+    private final long id;
+    private final long chatId;
+    private final User user;
+    private final Timestamp timestamp;
+    private final String data;
 
     public Message(long id, long chatId, User user, Timestamp timestamp, String data) {
         this.id = id;
@@ -21,6 +21,7 @@ public class Message {
         this.data = data;
     }
 
+    @SuppressWarnings("unused")
     public long getId() { return id; }
 
     public long getChatId() { return chatId; }

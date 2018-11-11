@@ -4,7 +4,7 @@ package ru.mail.polis.concurrency.low._synchronized;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class ReentrantSynchronization {
+class ReentrantSynchronization {
 
     class Reentrant {
 

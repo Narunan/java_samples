@@ -4,10 +4,13 @@ package ru.mail.polis.anonymous;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class AnonymousClass3 {
+@SuppressWarnings("unused")
+class AnonymousClass3 {
     interface I { void m(); }
-    static int a = 1; //member enclosing class
-    int b = 2; //member enclosing class
+    private static final int A = 1; //member enclosing class
+    private final int b = 2; //member enclosing class
+
+    @SuppressWarnings({"SameParameterValue", "Convert2Lambda", "TrivialFunctionalExpressionUsage", "UnusedAssignment"})
     private void run(
             int c /*local scope: effective final. Java 8 */, int d) {
         d--; //local scope: NON effective final
@@ -17,7 +20,7 @@ public class AnonymousClass3 {
         new I() {
             @Override public void m() {
                 System.out.println(
-                    a + b + c + f + g //+ d + e
+                    A + b + c + f + g //+ d + e
                 );
                 int g = 10; //shadowing
                 System.out.println(g);

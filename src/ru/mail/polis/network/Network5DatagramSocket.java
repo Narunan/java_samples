@@ -14,16 +14,16 @@ import java.util.logging.Logger;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network5DatagramSocket {
+class Network5DatagramSocket {
 
-    private Logger log = Logger.getLogger(Network5DatagramSocket.class.getName());
+    private final Logger log = Logger.getLogger(Network5DatagramSocket.class.getName());
 
     private class Client implements Runnable {
 
-        private DatagramSocket datagramSocket;
-        private byte buf[] = new byte[8096];
+        private final DatagramSocket datagramSocket;
+        private final byte[] buf = new byte[8096];
 
-        public Client(DatagramSocket datagramSocket) {
+        Client(DatagramSocket datagramSocket) {
             this.datagramSocket = datagramSocket;
         }
 
@@ -52,9 +52,9 @@ public class Network5DatagramSocket {
 
     private class Server extends TimerTask {
 
-        private DatagramSocket datagramSocket;
+        private final DatagramSocket datagramSocket;
 
-        public Server(DatagramSocket datagramSocket) {
+        Server(DatagramSocket datagramSocket) {
             this.datagramSocket = datagramSocket;
         }
 
@@ -98,7 +98,7 @@ public class Network5DatagramSocket {
         serverDatagramSocket.close();
     }
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         new Network5DatagramSocket().run();
     }
 }

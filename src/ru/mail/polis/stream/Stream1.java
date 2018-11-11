@@ -15,7 +15,7 @@ import ru.mail.polis.lambda.messaging.User;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Stream1 {
+class Stream1 {
 
     private void run(List<Message> messages) {
         Timestamp timestamp = Timestamp.from(Instant.now().minus(1, ChronoUnit.DAYS));

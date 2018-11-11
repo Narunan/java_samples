@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Nechaev Mikhail
  * Since 09/11/2018.
  */
-public class Network3URLConnection2 {
+class Network3URLConnection2 {
 
     private void run() throws IOException, InterruptedException {
         HttpServer httpServer = createHttpServer();
@@ -38,7 +38,7 @@ public class Network3URLConnection2 {
         httpServer.stop(3); //seconds
     }
 
-    public static void main(String args[]) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         new Network3URLConnection2().run();
     }
 

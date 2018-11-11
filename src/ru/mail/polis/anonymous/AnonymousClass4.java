@@ -4,8 +4,10 @@ package ru.mail.polis.anonymous;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class AnonymousClass4 {
-    interface I {}
+class AnonymousClass4 {
+    private interface I {}
+
+    @SuppressWarnings("unused")
     private void run() {
         I i = new I() {
             int a;
@@ -15,8 +17,8 @@ public class AnonymousClass4 {
             //}
             //inner class cannot have static declaration
             //static int b = 4;
-            final static int c = 5;
-            //inrerface are not allowed here
+            static final int C = 5;
+            //interface are not allowed here
             //interface I2 {}
             //ok
             class C {}

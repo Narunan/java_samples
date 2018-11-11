@@ -9,9 +9,9 @@ import ru.mail.polis.concurrency.low.job.SharedJobs;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class Synchronized2Join {
+class Synchronized2Join {
 
-    private SharedJobs sharedJobs = new SharedJobs();
+    private final SharedJobs sharedJobs = new SharedJobs();
 
     private void run() {
         System.out.println("Hello!");

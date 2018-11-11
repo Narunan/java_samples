@@ -11,11 +11,11 @@ import java.util.function.Predicate;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda6 {
+class Lambda6 {
 
-    void processMessages(List<Message> list,
-                         Predicate<Message> predicate,
-                         Consumer<Message> consumer) {
+    private void processMessages(List<Message> list,
+                                 Predicate<Message> predicate,
+                                 Consumer<Message> consumer) {
         for (Message message : list) {
             //java.util.function.Predicate<T> — boolean test(T t)
             if (predicate.test(message)) {
@@ -25,6 +25,7 @@ public class Lambda6 {
         }
     }
 
+    @SuppressWarnings("Convert2MethodRef")
     private void run(List<Message> list) {
         Timestamp timestamp = Timestamp.from(
                 Instant.now().minus(5, ChronoUnit.DAYS)

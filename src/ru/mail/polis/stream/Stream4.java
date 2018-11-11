@@ -9,11 +9,11 @@ import java.util.stream.Stream;
  * Created by Nechaev Mikhail
  * Since 17/04/2017.
  */
-public class Stream4 {
+class Stream4 {
 
     class StringConsumer implements Consumer<String> {
-        Map<String, String> map;
-        public StringConsumer() {
+        final Map<String, String> map;
+        StringConsumer() {
             map = new HashMap<>();
         }
         @Override
@@ -23,10 +23,10 @@ public class Stream4 {
                 map.put(flat[0], flat[1]);
             }
         }
-        public void combine(StringConsumer other) {
+        void combine(StringConsumer other) {
             map.putAll(other.get());
         }
-        public Map<String, String> get() {
+        Map<String, String> get() {
             return map;
         }
     }

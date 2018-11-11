@@ -8,7 +8,7 @@ import ru.mail.polis.concurrency.low.job.Jobs;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class Thread5Join {
+class Thread5Join {
 
     private void run() {
         System.out.println("Hello!");

@@ -6,9 +6,11 @@ import java.util.function.Consumer;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda10 {
-    static int a = 1; //member enclosing class
-    int b = 2; //member enclosing class
+class Lambda10 {
+    private static final int A = 1; //member enclosing class
+    private final int b = 2; //member enclosing class
+
+    @SuppressWarnings({"SameParameterValue", "UnusedAssignment"})
     private void run(
             int b /*local scope: effective final. Java 8 */, int d) {
         d--; //local scope: NON effective final
@@ -18,7 +20,7 @@ public class Lambda10 {
         //Скоуп ограничен лексически
         Consumer<Integer> consumer = (a/*нельзя b,d,e,f,g*/) -> {
             System.out.println(
-                    a + Lambda10.a + b + this.b/*outer*/
+                    a + Lambda10.A + b + this.b/*outer*/
                     + f + g //+ d + e
             );
             //int g = 10; no shadowing

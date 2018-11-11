@@ -7,7 +7,8 @@ import java.util.function.Predicate;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class Lambda5 {
+@SuppressWarnings("unused")
+class Lambda5 {
 
     //java.util.function.Predicate<T> — boolean test(T t)
     void printMessages(List<Message> list, Predicate<Message> predicate) {

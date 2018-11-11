@@ -22,7 +22,7 @@ public class Lambda2 {
         }
     }
 
-    void printMessages(List<Message> list, CheckCondition checkCondition) {
+    private void printMessages(List<Message> list, CheckCondition checkCondition) {
         for (Message message : list) {
             if (checkCondition.check(message)) {
                 System.out.println(message);

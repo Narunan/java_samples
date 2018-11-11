@@ -7,10 +7,12 @@ import java.util.concurrent.Executors;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class AnonymousClass6 {
+class AnonymousClass6 {
     private void methodReference() {
         System.out.println("methodReference.run");
     }
+
+    @SuppressWarnings({"Convert2Lambda", "CodeBlock2Expr"})
     private void run() {
         Executor executor = Executors.newCachedThreadPool();
         //void execute(Runnable command);

@@ -6,7 +6,7 @@ import ru.mail.polis.concurrency.low.job.Jobs;
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class Thread3Extend {
+class Thread3Extend {
 
     public static void main(String[] args) {
         new Thread3Extend().r();
@@ -14,11 +14,13 @@ public class Thread3Extend {
 
     private void r() {
         Thread firstChild = new Thread3ExtendInner();
-        Thread3ExtendInner secondChild = new Thread3ExtendInner("SecondChild");
+        Thread secondChild = new Thread3ExtendInner("SecondChild");
+        Thread3ExtendInner thirdChild = new Thread3ExtendInner("ThirdChild");
         firstChild.start();
         secondChild.start();
+        thirdChild.start();
 
-        secondChild.customMethod();
+        thirdChild.customMethod();
 
         Jobs.doSimpleJob(5);
     }

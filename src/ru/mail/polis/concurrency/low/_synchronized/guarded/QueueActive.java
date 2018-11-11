@@ -1,33 +1,57 @@
 package ru.mail.polis.concurrency.low._synchronized.guarded;
 
+import ru.mail.polis.logger.LoggerUtils;
+
+import java.util.logging.Logger;
+
 /**
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
 class QueueActive {
 
-    private String data;
+    private static final Logger LOGGER = LoggerUtils.getFormattedLogger(QueueActive.class.getSimpleName());
 
-    String getData() {
-        while (true) {
+    private int data = 0;
+
+    private void get() {
+        while (!Thread.currentThread().isInterrupted()) {
             synchronized (this) {
-                if (this.data != null) {
-                    String result = this.data;
-                    this.data = null;
-                    return result;
+                LOGGER.info("check get");
+                if (this.data != 0) {
+                    LOGGER.info("success get");
+                    this.data = 0;
                 }
             }
         }
     }
 
-    void setData(String data) {
-        while (true) {
+    private void set(int data) {
+        while (!Thread.currentThread().isInterrupted()) {
             synchronized (this) {
-                if (this.data == null) {
+                LOGGER.info("check set");
+                if (this.data == 0) {
+                    LOGGER.info("success set");
                     this.data = data;
-                    break;
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        QueueActive queueActive = new QueueActive();
+        Thread setter = new Thread(() -> {
+            for (int i = 1; i <= 50 && !Thread.currentThread().isInterrupted(); i++) {
+                queueActive.set(i);
+            }
+        }, "Setter");
+        Thread getter = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                queueActive.get();
+            }
+        }, "Getter");
+        getter.setDaemon(true);
+        setter.start();
+        getter.start();
     }
 }

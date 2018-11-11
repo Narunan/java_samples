@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
  * Created by Nechaev Mikhail
  * Since 16/04/2017.
  */
-public class LambdaType {
+class LambdaType {
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(1);

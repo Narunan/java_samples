@@ -1,32 +1,71 @@
 package ru.mail.polis.concurrency.low._synchronized.guarded;
 
+import ru.mail.polis.logger.LoggerUtils;
+
+import java.util.logging.Logger;
+
 /**
  * Created by Nechaev Mikhail
  * Since 08/11/2018.
  */
-public class WaitNotify {
-    private static final Object lock = new Object();
-    private static int data = 0;
+class WaitNotify {
 
-    public void set(int value) {
-        synchronized (lock) {
+    private static final Logger LOGGER = LoggerUtils.getFormattedLogger(WaitNotify.class.getSimpleName());
+    private static final Object LOCK = new Object();
+    private int data = 0;
+
+    private void set(int value) {
+        synchronized (LOCK) {
+            LOGGER.info("inside with " + value);
+            if (data != 0) {
+                try {
+                    LOGGER.info("set wait");
+                    LOCK.wait();
+                    LOGGER.info("wakeUp");
+                } catch (InterruptedException e) {
+                    return;
+                }
+            }
             data = value;
-            lock.notifyAll();
+            LOGGER.info("put " + value);
+            LOGGER.info("notify");
+            LOCK.notify();
         }
     }
 
-    public int get() {
-        synchronized (lock) {
-            while (data != 0) {
+    private void get() {
+        synchronized (LOCK) {
+            LOGGER.info("inside with " + data);
+            while (data == 0) {
                 try {
-                    lock.wait();
+                    LOGGER.info("get wait");
+                    LOCK.wait();
+                    LOGGER.info("wakeUp");
                 } catch (InterruptedException e) {
-                    /* empty */
+                    return;
                 }
             }
-            int value = data;
+            LOGGER.info("get " + data);
             data = 0;
-            return value;
+            LOCK.notify();
+            LOGGER.info("notify");
         }
+    }
+
+    public static void main(String[] args) {
+        WaitNotify waitNotify = new WaitNotify();
+        Thread setter = new Thread(() -> {
+            for (int i = 1; i <= 50 && !Thread.currentThread().isInterrupted(); i++) {
+                waitNotify.set(i);
+            }
+        }, "Setter");
+        Thread getter = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                waitNotify.get();
+            }
+        }, "Getter");
+        getter.setDaemon(true);
+        setter.start();
+        getter.start();
     }
 }
