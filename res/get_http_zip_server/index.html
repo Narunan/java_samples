@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HttpZipServer</title>
+</head>
+<body>
+    <form action="/zip/simple">
+        <input type="hidden" name="timeout" value="1"/>
+        <button type="submit">timeout</button>
+    </form>
+    <form action="/zip/simple">
+        <input type="hidden" name="timeout" value="10"/>
+        <button type="submit">Long timeout</button>
+    </form>
+    <form action="/zip/streaming">
+        <input type="hidden" name="timeout" value="1"/>
+        <button type="submit">Streaming and timeout</button>
+    </form>
+    <form action="/zip/streaming">
+        <input type="hidden" name="timeout" value="10"/>
+        <button type="submit">Streaming and Long timeout</button>
+    </form>
+    <form action="/zip/simple">
+        <input type="number" name="timeout" value="300"/>
+        <input type="number" name="count" value="5"/>
+        <button type="submit">Custom simple</button>
+    </form>
+    <form action="/zip/streaming">
+        <input type="number" name="timeout" value="300"/>
+        <input type="number" name="count" value="5"/>
+        <button type="submit">Custom streaming</button>
+    </form>
+</body>
+</html>
