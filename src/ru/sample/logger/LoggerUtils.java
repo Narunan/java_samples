@@ -29,6 +29,7 @@ public class LoggerUtils {
                     logMessage.append("\n");
                     logMessage.append("Class: ").append(lr.getSourceClassName());
                     logMessage.append(", method: ").append(lr.getSourceMethodName());
+                    logMessage.append(", ").append(throwable.getClass());
                     logMessage.append(", msg: ").append(throwable.getMessage());
                     logMessage.append("\n");
                     StackTraceElement[] trace = throwable.getStackTrace();
