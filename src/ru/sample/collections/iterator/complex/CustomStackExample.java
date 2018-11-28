@@ -12,12 +12,12 @@ import java.util.NoSuchElementException;
 public class CustomStackExample {
 
     public static void main(String[] args) {
-        CustomStack stack = new CustomStack(4);
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        Iterator<Integer> iterator = stack.iterator();
+        CustomStack<String>stack = new CustomStack<>(4);
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
+        stack.push("D");
+        Iterator<String> iterator = stack.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
@@ -31,20 +31,21 @@ public class CustomStackExample {
     }
 }
 
-class CustomStack {
+class CustomStack<E> {
 
-    private final int[] data;
+    private final E[] data;
     private int size = 0;
     private int modCount = 0;
 
+    @SuppressWarnings("unchecked")
     public CustomStack(int capacity) {
         if (capacity < 1 || capacity > 10) {
             throw new IllegalArgumentException("capacity must be in range [1..10]");
         }
-        data = new int[capacity];
+        data = (E[]) new Object[capacity];
     }
 
-    void push(int value) {
+    void push(E value) {
         if (size == data.length) {
             throw new IllegalStateException("stack is full");
         }
@@ -52,12 +53,14 @@ class CustomStack {
         data[size++] = value;
     }
 
-    int pop() {
+    E pop() {
         if (size == 0) {
             throw new IllegalStateException("stack is empty");
         }
         modCount++;
-        return data[--size];
+        E value = data[--size];
+        data[size] = null; //for GC
+        return value;
     }
 
     int getSize() {
@@ -69,7 +72,7 @@ class CustomStack {
         return Arrays.toString(data);
     }
 
-    Iterator<Integer> iterator() {
+    Iterator<E> iterator() {
 
         return new Iterator<>() {
             int position = 0;
@@ -83,7 +86,7 @@ class CustomStack {
             }
 
             @Override
-            public Integer next() {
+            public E next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
