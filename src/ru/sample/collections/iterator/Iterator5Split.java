@@ -16,9 +16,12 @@ public class Iterator5Split {
             list.add(i);
         }
         Spliterator<Integer> spliterator = list.spliterator();
-        int characteristics = spliterator.characteristics();
 
+        int characteristics = spliterator.characteristics();
         System.out.println("SIZED = " + ((characteristics & Spliterator.SIZED) != 0)); //true
+        //or
+        System.out.println(spliterator.hasCharacteristics(Spliterator.SIZED)); //true
+
         System.out.println(spliterator.getExactSizeIfKnown()); //10
         Spliterator<Integer> second = spliterator.trySplit();
         if (second != null) {
